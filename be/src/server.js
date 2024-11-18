@@ -1,7 +1,9 @@
 // server.js
 const mongoose = require('mongoose');
 const app = require('./app'); // Import the app from app.js
+
 require('dotenv').config(); // Load environment variables from .env file
+
 
 // MongoDB connection URI from .env
 const mongoUri = process.env.MONGO_URI; 

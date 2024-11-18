@@ -10,10 +10,8 @@ const {
     logoutUser,
 } = require('../controllers/authController');
 
-// POST /register - Register route
 router.post('/register', registerValidation, registerUser);
 
-// POST /login - Login route
 router.post('/login', loginValidation, loginUser);
 
 router.post('/logout', authMiddleware, logoutUser);

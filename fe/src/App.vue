@@ -1,28 +1,51 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <v-app-bar app>
+      <v-btn text @click="goToHomePage">
+        <v-toolbar-title>My App</v-toolbar-title>
+      </v-btn>
+      <v-spacer></v-spacer>
+
+      <!-- Show Login Button if not authenticated -->
+      <v-btn v-if="!isAuthenticated" color="primary" @click="goToLoginPage">
+        Login
+      </v-btn>
+
+      <!-- Show Logout Button if authenticated -->
+      <v-btn v-if="isAuthenticated" color="primary" @click="logout">
+        Logout
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <router-view></router-view>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters['auth/isAuthenticated']; // Use namespaced getter
+    },
+  },
+  methods: {
+    goToHomePage() {
+      if (this.$route.path !== '/') {
+        this.$router.push('/');
+    }
+  },
+    goToLoginPage() {
+      if (this.$route.path !== '/login') {
+        this.$router.push('/login');
+    }
+  },
+    logout() {
+      this.$store.dispatch('auth/logout'); // Use namespaced action
+      this.$router.push('/login');
+    },
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
