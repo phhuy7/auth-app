@@ -1,25 +1,28 @@
 <template>
-    <v-container>
-      <v-row>
-        <v-col cols="12">
-          <UserComponent />
-        </v-col>
-      </v-row>
-    </v-container>
-  </template>
-  
-  <script>
-  import UserComponent from '../components/UserComponent.vue'; // Ensure correct path
-  
-  export default {
-    name: 'PageDashboard',
-    components: {
-      UserComponent, // Register the component
+  <v-app>
+    <!-- Main Content Area -->
+    <v-main> <!-- Added min-height for full screen -->
+      <v-container fluid>
+        <v-row> <!-- Full screen height -->
+          <v-col>
+            <router-view></router-view> <!-- Displays child components based on route -->
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-main>
+  </v-app>
+</template>
+
+<script>
+export default {
+  name: 'PageDashboard',
+  methods: {
+    navigateToPage(routeName) {
+      // Navigate to the selected route
+      if (this.$route.name !== routeName) {
+        this.$router.push({ name: routeName });
+      }
     },
-  };
-  </script>
-  
-  <style scoped>
-  /* Optional: Add custom styles if needed */
-  </style>
-  
+  },
+};
+</script>
