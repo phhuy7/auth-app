@@ -6,17 +6,21 @@
         <v-card class="pa-4">
           <v-card-title class="text-h5 justify-center">Login</v-card-title>
           <v-card-text>
-            <v-form>
+            <v-form v-model="formIsValid">
               <v-text-field 
                 v-model="username" 
-                label="Username" 
+                label="Username"
+                @keydown.enter="handleEnter" 
+                :rules="usernameRules"
                 outlined 
                 required
               ></v-text-field>
               <v-text-field 
                 v-model="password" 
                 label="Password" 
-                type="password" 
+                type="password"
+                @keydown.enter="handleEnter" 
+                :rules="passwordRules"
                 outlined 
                 required
               ></v-text-field>
@@ -45,6 +49,13 @@ export default {
     return {
       username: '',
       password: '',
+      formIsValid: false,
+      usernameRules: [
+        (v) => !!v || "Username is required"],
+      passwordRules: [
+        (v) => !!v || "Password is required", // Ensure the password is not empty
+        (v) => (v && v.length >= 6) || "Password must be at least 6 characters", // Additional validation
+      ],
     };
   },
   methods: {
@@ -60,6 +71,11 @@ export default {
       } catch (error) {
         console.error('Login failed:', error);
       }
+    },
+    handleEnter(event) {
+      // Prevent default form submission and call the login method
+      event.preventDefault();
+      this.login();
     },
   },
 };

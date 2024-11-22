@@ -13,7 +13,6 @@ const {
 
 // Create a new permission
 router.post('/createPermission', authMiddleware, roleMiddleware('ADMIN'), permissionMiddleware('CREATE'), createPermission);
-
 // Get all permissions
 router.get('/getAllPermissions', authMiddleware, roleMiddleware('ADMIN'), permissionMiddleware('READ'), getPermissions);
 
@@ -21,7 +20,7 @@ router.get('/getAllPermissions', authMiddleware, roleMiddleware('ADMIN'), permis
 router.get('/getPermission/:id', authMiddleware, roleMiddleware('ADMIN'), permissionMiddleware('READ'), getPermissionById);
 
 // Update a permission
-router.put('/updatePermission/id', authMiddleware, roleMiddleware('ADMIN'), permissionMiddleware('UPDATE'), updatePermission);
+router.put('/updatePermission/:id', authMiddleware, roleMiddleware('ADMIN'), permissionMiddleware('UPDATE'), updatePermission);
 
 // Delete a permission
 router.delete('/deletePermission/:id', authMiddleware, roleMiddleware('ADMIN'), permissionMiddleware('DELETE'), deletePermission);

@@ -7,6 +7,7 @@ const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const userRoleRoutes = require('./routes/userRoleRoutes');
 const rolePermissionRoutes = require('./routes/rolePermissionRoutes');
+const userAddress = require('./routes/userAddressRoutes');
 
 const app = express();
 
@@ -21,7 +22,7 @@ app.use('/api/auth',authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/userRole', userRoleRoutes);
 app.use('/api/rolePermission', rolePermissionRoutes);
-
+app.use('/api/userAddress',userAddress);
 
 
 // Default route for root

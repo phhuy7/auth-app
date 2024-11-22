@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <h1>Dashboard</h1>
     <!-- Main Content Area -->
     <v-main> <!-- Added min-height for full screen -->
       <v-container fluid>
