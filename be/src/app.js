@@ -22,7 +22,6 @@ app.use('/api/auth',authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/userRole', userRoleRoutes);
 app.use('/api/rolePermission', rolePermissionRoutes);
-app.use('/api/userAddress',userAddress);
 
 
 // Default route for root
